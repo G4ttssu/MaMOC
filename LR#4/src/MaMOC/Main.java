@@ -33,11 +33,17 @@ public class Main {
             encoded.append(codes.get(text.charAt(i)));
         }
 
+        double a = (encoded.length());
+        double b = (text.getBytes().length * 8);
+        int effective = (int)(a/b*100);
+
+
         System.out.println("Исходный текст: " + text);
         System.out.println("Частота символов: " + frequencies);
         System.out.println("Коды символов: " + codes);
         System.out.println("Размер исходной строки: " + text.getBytes().length * 8 + " бит");
         System.out.println("Размер сжатой строки: " + encoded.length() + " бит");
+        System.out.println("Процент сжатия текста: " + effective + "%");
         System.out.println("Зашифровано: " + encoded);
 
         // декодируем сжатую информацию обратно
@@ -45,8 +51,6 @@ public class Main {
 
         System.out.println("Расшифровано: " + decoded);
 
-        // тест сжатия файла
-        //fileCompressTest();
     }
 
     private static TreeMap<Character, Integer> countFrequency(String text) {
@@ -129,130 +133,3 @@ public class Main {
         }
     }
 }
-
-
-
-/*
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.TreeMap;
-import java.lang.Comparable;
-
-public class Main {
-
-    private static TreeMap<Character,Integer> createDictionary(String text)
-    {
-        TreeMap<Character,Integer> dictionary = new TreeMap<>();
-        for(int index = 0; index < text.length(); ++index)
-            dictionary.put(text.charAt(index), dictionary.get(text.charAt(index)) != null ? dictionary.get(text.charAt(index)) + 1 : 1 );
-        return dictionary;
-    }
-
-    public static void main(String[] args)
-    {
-        String text = "adadfffdfdfd";
-        TreeMap<Character,Integer> dictionary = createDictionary(text);
-        ArrayList<Node> tree = new ArrayList<>();
-
-        for(Character character: dictionary.keySet())
-            tree.add(new Node(character, dictionary.get(character)));
-
-        Node treeNode = huffmanCode(tree);
-
-        TreeMap<Character,String> codes = new TreeMap<>();
-        for(Character character: dictionary.keySet())
-            codes.put(character, treeNode.getCode(character,""));
-
-        System.out.println(dictionary.toString());
-        System.out.println("Таблица префиксныз кодов: " + codes.toString());
-    }
-
-    private static Node huffmanCode(ArrayList<Node> tree)
-    {
-        while(tree.size() > 1)
-        {
-            Collections.sort(tree);
-            Node left = tree.remove(tree.size() - 1);
-            Node right = tree.remove(tree.size() - 1);
-
-            Node parent = new Node(null, right.weight + left.weight, left, right);
-            tree.add(parent);
-        }
-
-        return tree.get(0);
-    }
-
-    private static String huffmanDecode(String encoded, Node tree)
-    {
-        StringBuilder decoded = new StringBuilder();
-
-        Node node = tree;
-        for(int index = 0; index < encoded.length(); ++index)
-        {
-            node = encoded.charAt(index) == '0' ? node.left : node.right;
-            if(node.symbol != null)
-            {
-                decoded.append(node.symbol);
-                node = tree;
-            }
-        }
-
-        return decoded.toString();
-    }
-
-    private static class Node implements Comparable<Node>
-    {
-
-        Character symbol;
-        Integer weight;
-
-        Node right;
-        Node left;
-
-        public Node(Character symbol, Integer weight) {
-            this.symbol = symbol;
-            this.weight = weight;
-        }
-
-        public Node(Character symbol, Integer weight, Node left, Node right) {
-            this.symbol = symbol;
-            this.weight = weight;
-            this.right = right;
-            this.left = left;
-        }
-
-        public Node(Character symbol) {
-            this.symbol = symbol;
-        }
-
-        @Override
-        public int compareTo(Node object) {
-            return object.weight - weight;
-        }
-
-        //Обход дерева и возвращение кода нужного символа
-        public String getCode(Character character, String parent)
-        {
-            if(symbol == character)
-                return parent;
-            else
-            {
-                if(left != null)
-                {
-                    String path = left.getCode(character,parent + 0);
-                    if(path != null)
-                        return path;
-                }
-                if(right != null)
-                {
-                    String path = left.getCode(character,parent + 1);
-                    if(path != null)
-                        return path;
-                }
-            }
-            return null;
-        }
-    }
-}
-
- */
