@@ -1,6 +1,7 @@
 package MaMOC;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
@@ -31,7 +32,9 @@ public class Main {
 
     public static void main(String[] args)
     {
-        String a = "101101";
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите двоичный код, который нужно закодировать: ");
+        String a = in.next();
         String key = getKey(a.length());
         System.out.println("Ключ:" + key);
         System.out.println("Исходно слово:" + a);

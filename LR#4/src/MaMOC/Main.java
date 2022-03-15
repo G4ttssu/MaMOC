@@ -2,12 +2,15 @@ package MaMOC;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Main {
     public static void main(String[] args) {
 
-        String text = "abracnigabra";
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите текст, который хотите сжать: ");
+        String text = in.nextLine();
 
         // вычисляем частоты символов в тексте
         TreeMap<Character, Integer> frequencies = countFrequency(text);
@@ -35,8 +38,7 @@ public class Main {
 
         double a = (encoded.length());
         double b = (text.getBytes().length * 8);
-        int effective = (int)(a/b*100);
-
+        int effective = (int)((1 -a/b)*100);
 
         System.out.println("Исходный текст: " + text);
         System.out.println("Частота символов: " + frequencies);
