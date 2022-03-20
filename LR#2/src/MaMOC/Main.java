@@ -6,7 +6,6 @@ public class Main {
 
     //Exercise №1
 
-
     static double calculationB_m(double m)
     {return (Math.pow(-1,m+1)+1)/(Math.PI*m);}
 
@@ -16,8 +15,8 @@ public class Main {
         final double a_n = 0;
         double result = a_0/2;
 
-        for(int i = 0; i < n; ++i)
-            result += a_n * Math.cos(i * x) + calculationB_m(i)*Math.sin(i*x);
+        for(int i = 1; i <= n; ++i)
+            result += calculationB_m(i)*Math.sin(i*x);
 
         return result;
     }
@@ -61,6 +60,7 @@ public class Main {
         int m = in.nextInt();
         System.out.println("Значение функции F: " + calculatePulse(x));
         System.out.println("Значение f(x): " + transformFourier(x,m));
+        System.out.println("Значение dF: " + Math.abs(calculatePulse(x) - transformFourier(x,m)));
 
         /*
         System.out.print("Введите двочиное значение: ");
