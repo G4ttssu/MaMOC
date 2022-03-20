@@ -8,7 +8,7 @@ public class Main {
 
 
     static double calculationB_m(double m)
-    {return (Math.pow(-1,m)+1)/(Math.PI + m);}
+    {return (Math.pow(-1,m+1)+1)/(Math.PI*m);}
 
     static double transformFourier(double x, int n)
     {
@@ -54,15 +54,15 @@ public class Main {
     public static void main(String[] args)
     {
         Scanner in = new Scanner(System.in);
-        /*
+
         System.out.print("Введите x: ");
         double x = in.nextDouble();
         System.out.print("Введите m: ");
         int m = in.nextInt();
         System.out.println("Значение функции F: " + calculatePulse(x));
         System.out.println("Значение f(x): " + transformFourier(x,m));
-         */
 
+        /*
         System.out.print("Введите двочиное значение: ");
         String numberOne = in.next();
         System.out.println("Проверочный бит: " + calculateTestDischarge(numberOne));
@@ -72,5 +72,7 @@ public class Main {
             System.out.println("Удалось найти искажение при передаче");
         else
             System.out.println("Не удалось найти искажение при передаче");
+
+         */
     }
 }
